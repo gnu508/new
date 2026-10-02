@@ -688,7 +688,7 @@ void scrollCallback(GLFWwindow* window, double, double y) {
 
 }  // namespace
 
-int main() {
+static int runDemo() {
     if (glfwInit() != GLFW_TRUE) {
         std::cerr << "Could not initialize GLFW. Check your window-system dependencies.\n";
         return 1;
@@ -744,3 +744,13 @@ int main() {
     glfwTerminate();
     return 0;
 }
+
+int main() {
+    return runDemo();
+}
+
+#ifdef _WIN32
+extern "C" int __stdcall WinMain(void*, void*, char*, int) {
+    return runDemo();
+}
+#endif

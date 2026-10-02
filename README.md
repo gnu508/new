@@ -28,3 +28,17 @@ cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build -j
 ./build/watermelon_impact
 ```
+
+## Windows x64 executable from Linux
+
+With LLVM-MinGW available on `PATH`, cross-compile a statically linked executable:
+
+```sh
+cmake -S . -B build-windows \
+	-DCMAKE_TOOLCHAIN_FILE=cmake/mingw-w64-toolchain.cmake \
+	-DCMAKE_BUILD_TYPE=Release
+cmake --build build-windows -j
+```
+
+The executable is `build-windows/watermelon_impact.exe`. On Windows, the same
+project can be built natively with Visual Studio 2022 and the x64 CMake generator.
